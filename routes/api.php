@@ -21,13 +21,13 @@ Route::post('register', [AuthController::class, 'register']);
 Route::middleware('VerifyJWTToken')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
-    Route::group(['prefix' => 'products', 'controller' => ProductController::class], function () {
-        Route::get('categories', 'index');
-        Route::get('products', 'listProducts');
-        Route::get('product-detail/{id}', 'showProduct');
-        Route::post('add-product', 'store');
-        Route::post('edit-product/{id}', 'update');
-        Route::delete('delete-product/{id}', 'destroy');
+    Route::group(['controller' => ProductController::class], function () {
+        Route::get('categories', 'categories');
+        Route::get('products', 'products');
+        Route::get('product-detail', 'productDetail');
+        Route::post('add-product', 'addProduct');
+        Route::post('edit-product/{id}', 'updateProduct');
+        Route::delete('delete-product/{id}', 'deleteProduct');
     });
 });
 
